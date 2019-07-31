@@ -5,11 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Task List</title>
+  <title>Task List App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <main>
+    <div class="container">
+      <div class="todo"></div>
+      <div class="todo__header">
+        <h1 class="todo__title">To Do's</h1>
+        <label for="todo input">
+          <input class="todo__inputer" type="text" placeholder="Enter a todo">
+        </label>
+      </div>
+      <div class="todo__body">
+        <ul class="todo__list">
+          <li class="todo__item">Study</li>
+          <li class="todo__item">Clean house</li>
+          <li class="todo__item">Go to gym</li>
+        </ul>
+      </div>
+    </div>
+  </main>
   <script src="scripts.js"></script>
 </body>
 
