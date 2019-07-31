@@ -2,7 +2,7 @@
 // input tag, bc when enter it should add it to list.
 
 const todoInputEl = document.querySelector('.todo__input');
-const toListEl = document.querySelector('.todo__list');
+const todoListEl = document.querySelector('.todo__list');
 const todoItemEls = document.querySelectorAll('.todo__item');
 
 // have to do All for todoItemEls bc a lot of .todo_item elements
@@ -15,7 +15,9 @@ function addListItem() {
     if (event.keyCode === 13) {
       let newListItem = createListItem(todoInputEl.value);
       //console.log(todoInputEl.value); // when if statement true, console.log input
-      toListEl.appendChild(newListItem);
+      todoListEl.appendChild(newListItem); // append adds to end of list
+      // to make input on top of list:
+      todoListEl.insertBefore(newListItem, todoListEl.childNodes[0]);
       todoInputEl.value = ""; // clears input box after user enters something
     }
 })
@@ -25,14 +27,27 @@ function addListItem() {
 // loop through all list items, then add event listener
 // to each of them and listen for a click. When clicked on each li item
 // toggle the class done.
+// below function works, but only for hardcoded items.
+// dynamically created ones don't allow strikethrough after
+// entering something in input box
+// add to a parent element that is static and stays static
+// function toggleDone() {
+//   for (let elem of todoItemEls) {
+//     elem.addEventListener('click', function() {
+//       elem.classList.toggle('done');
+//     })
+//   }
+// }
+
+// Research on bubbling and propogation for ABOVE issue:
+// research event.targer, classList, etc
 function toggleDone() {
-  for (let elem of todoItemEls) {
-    elem.addEventListener('click', function() {
-      elem.classList.toggle('done');
-    })
-  }
+  todoListEl.addEventListener('click', function(event) {
+    if (event.target.classList.contains('todo__item')) {
+      event.target.classList.toggle('done');
+    }
+  })
 }
-toggleDone();
 
 function createListItem(text) {
   const newListElement = document.createElement("li"); // create new element w/javascript
@@ -41,4 +56,8 @@ function createListItem(text) {
   return newListElement;
 }
 
+toggleDone();
 addListItem();
+
+// Delete functionality is missing. For challenge try to add it.
+// add an X at end of task on right or delete button far right of task
