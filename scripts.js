@@ -4,6 +4,11 @@
 const todoInputEl = document.querySelector('.todo__input');
 const todoListEl = document.querySelector('.todo__list');
 const todoItemEls = document.querySelectorAll('.todo__item');
+//const deleteBtnEl = document.querySelectorAll('.todo__delete');
+//console.log(todoItemEls);
+// deleteBtnEl.innerText = "&times;";
+// deleteBtnEl.className = "todo__delete";
+//todoItemEls.appendChild(deleteBtnEl);
 
 // have to do All for todoItemEls bc a lot of .todo_item elements
 
@@ -20,8 +25,33 @@ function addListItem() {
       todoListEl.insertBefore(newListItem, todoListEl.childNodes[0]);
       todoInputEl.value = ""; // clears input box after user enters something
     }
+    
 })
 }
+
+// Create a "close" button and append it to each list item
+// var myNodelist = document.getElementsByTagName("li");
+// console.log(myNodelist);
+
+// for (let i = 0; i < todoItemEls.length; i++) {
+//   var span = document.createElement('SPAN');
+//   var txt = document.createTextNode("\u00D7");
+//   span.className = "close";
+//   span.appendChild(txt);
+//   todoItemEls[i].appendChild(span);
+// }
+
+// function closeBtn() {
+//   var i;
+//   for (i = 0; i < todoItemEls.length; i++) {
+//     var span = document.createElement('span');
+//     var txt = document.createTextNode("\u00D7");
+//     span.className = "close";
+//     span.appendChild(txt);
+//     todoItemEls[i].appendChild(span);
+//   }
+// }
+// closeBtn();
 
 // create strikethrough effect to show a task completed:
 // loop through all list items, then add event listener
@@ -54,6 +84,13 @@ function createListItem(text) {
   newListElement.textContent = text;
   newListElement.setAttribute('class', 'todo__item');
   return newListElement;
+  for (let i = 0; i < todoItemEls.length; i++) {
+      var span = document.createElement('SPAN');
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      todoItemEls[i].appendChild(span);
+  }
 }
 
 toggleDone();
