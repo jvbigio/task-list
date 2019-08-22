@@ -4,7 +4,9 @@
 const todoInputEl = document.querySelector('.todo__input');
 const todoListEl = document.querySelector('.todo__list');
 const todoItemEls = document.querySelectorAll('.todo__item');
-//const deleteBtnEl = document.querySelectorAll('.todo__delete');
+const deleteEl = document.querySelectorAll('.todo__delete');
+cont deleteButtonEl = document.createElement('button');
+
 //console.log(todoItemEls);
 // deleteBtnEl.innerText = "&times;";
 // deleteBtnEl.className = "todo__delete";
@@ -19,13 +21,13 @@ function addListItem() {
     //console.log(event.keyCode); // find key code of pressing enter. // 13
     if (event.keyCode === 13) {
       let newListItem = createListItem(todoInputEl.value);
+      let createDeleteButton();
       //console.log(todoInputEl.value); // when if statement true, console.log input
       todoListEl.appendChild(newListItem); // append adds to end of list
       // to make input on top of list:
       todoListEl.insertBefore(newListItem, todoListEl.childNodes[0]);
       todoInputEl.value = ""; // clears input box after user enters something
     }
-    
 })
 }
 
@@ -93,6 +95,21 @@ function createListItem(text) {
   }
 }
 
+function createDeleteButton() {
+  newItemButton.textContent = "&times;";
+  newItemButton.setAttribute('class', 'todo_delete');
+  return newItemButton;
+}
+
+function removeItem() {
+  todoListEl.addEventListener('click', function(event) {
+    if (event.target.classList.contains('&times;')) {
+      event.target.parentNode.remove();
+    }
+  });
+}
+
+removeItem();
 toggleDone();
 addListItem();
 
